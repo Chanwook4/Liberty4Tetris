@@ -1,11 +1,12 @@
 public class GameModel {
-   private final Square box;
+   private final PlayField field;
    
    public GameModel() {
-      this.box = new Square();
+      this.field = new PlayField(10, 20);
+        
    }
    
-   public Square getBox() {
-      return this.box;
+   public PlayField getField() {
+      return this.field;
    }
 }
