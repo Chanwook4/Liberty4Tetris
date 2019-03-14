@@ -1,6 +1,8 @@
 import javafx.scene.*;
-import javafx.scene.paint.*;
 import javafx.scene.canvas.*;
+import javafx.scene.control.*;
+import javafx.scene.input.*;
+import javafx.scene.paint.*;
 import javafx.stage.*;
 
 public class GameView {
@@ -14,18 +16,48 @@ public class GameView {
    
    private final GraphicsContext gc;
    
-   public GameView(Stage stage, GameModel model) {
+   private final GameController controller;
+   
+   public GameView(Stage stage, GameModel model, GameController controller) {
+      this.model = model;
+      this.controller = controller;
       Group root = new Group();
       Scene s = new Scene(root, XWINDOW, YWINDOW, Color.WHITE);
       Canvas canvas = new Canvas(XWINDOW,YWINDOW);
       gc = canvas.getGraphicsContext2D();
       root.getChildren().add(canvas);
       stage.setScene(s);
-      this.model = model;
+      
+      canvas.requestFocus();
+      canvas.setOnKeyPressed(e -> this.onKeyPressed(e));
+      
       drawField();
-     
+      
    }
    
+   private void onKeyPressed(KeyEvent e) {
+        boolean handled = this.handleKeyPress(e.getCode());
+        if (handled) {
+         PlayField field = this.model.getField();
+         boolean [] grid = field.getGrid();
+         grid[1] = true;
+         drawField();
+         
+        }
+    }
+
+   private boolean handleKeyPress(KeyCode code) {
+        switch (code) {
+            // Arrow keys correspond to movement actions.
+            case LEFT:
+                return this.controller.moveLeft();
+            case RIGHT:
+                return this.controller.moveRight();
+            default:
+                return false;
+            }
+  }
+  
    private void drawField() {
       PlayField field = this.model.getField();
       boolean [] grid = field.getGrid();

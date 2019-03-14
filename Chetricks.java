@@ -7,8 +7,8 @@ public class Chetricks extends Application {
       primaryStage.setTitle("Chetricks");
       
       GameModel model = new GameModel();
-      //insert controller later
-      GameView view = new GameView(primaryStage, model);
+      GameController controller = new GameController (model);
+      GameView view = new GameView(primaryStage, model, controller);
       
       primaryStage.show();
    }
