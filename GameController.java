@@ -31,15 +31,19 @@ public class GameController {
    }
    
    public PieceState moveDown() {
+      PlayField field = model.getField();
       Piece piece = model.getPiece();
       int y = piece.getY();
-      int h = model.getField().getHeight() - 1;
-      if(y == h) {
+      int nextY = y + 1; 
+      int x = piece.getX();
+      if(field.getSquare(x, nextY) == true) {
+         field.setSquare(x, y, true);
          model.nextPiece();
          return PieceState.DROP;
       } else {
          piece.setY(y + 1);
          return PieceState.MOVE;
+         
       }
 
    }

@@ -17,10 +17,15 @@ public class PlayField {
 //       }
 //   }
    public boolean getSquare(int x, int y) {
-      return grid[y * width + x];
+      if(y >= height) {
+         return true;
+      } else {
+         return grid[y * width + x];
+      }
    }
    
-   public boolean setSquare() {
+   public void setSquare(int x, int y, boolean value) {
+      grid[y * width + x] = value;
    // complete soon
    }
    
