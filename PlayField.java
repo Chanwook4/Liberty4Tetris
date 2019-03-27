@@ -7,21 +7,27 @@ public class PlayField {
       grid = new boolean [width * height];
       this.width = width;
       this.height = height;
-      this.makeX();
+//       this.makeX();
 
    }
+//    
+//    private void makeX() {
+//       for(int i = 0; i < grid.length; i+= width + 1) {
+//          grid [i] = true; 
+//       }
+//   }
+   public boolean getSquare(int x, int y) {
+      return grid[y * width + x];
+   }
    
-   private void makeX() {
-      for(int i = 0; i < grid.length; i+= width + 1) {
-         grid [i] = true; 
-      }
+   public boolean setSquare() {
+   // complete soon
    }
-   public boolean [] getGrid() {
-      return grid;
-   }
+   
    public int getWidth() {
       return width;
    }
+   
    public int getHeight() {
       return height;
    }

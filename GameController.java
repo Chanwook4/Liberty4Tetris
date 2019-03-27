@@ -6,11 +6,42 @@ public class GameController {
       this.model = model;
    }   
    
-   public boolean moveLeft() {
-      return true;
+   public PieceState moveLeft() {
+      Piece piece = model.getPiece();
+      int x = piece.getX();
+      if(x == 0) {
+         return PieceState.NONE;
+      } else {
+         piece.setX(x - 1);
+         return PieceState.MOVE;
+      }
    }
    
-   public boolean moveRight() {
-      return true;
+   public PieceState moveRight() {
+      Piece piece = model.getPiece();
+      int x = piece.getX();
+      int w = model.getField().getWidth() - 1;
+      if(x == w) {
+         return PieceState.NONE;
+      } else {
+         piece.setX(x + 1);
+         return PieceState.MOVE;
+      }
+
    }
+   
+   public PieceState moveDown() {
+      Piece piece = model.getPiece();
+      int y = piece.getY();
+      int h = model.getField().getHeight() - 1;
+      if(y == h) {
+         model.nextPiece();
+         return PieceState.DROP;
+      } else {
+         piece.setY(y + 1);
+         return PieceState.MOVE;
+      }
+
+   }
+
 }
