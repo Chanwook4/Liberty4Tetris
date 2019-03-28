@@ -4,30 +4,29 @@ public class GameController {
    
    public GameController(GameModel model) {
       this.model = model;
-   }   
-   
-   public PieceState moveLeft() {
-      Piece piece = model.getPiece();
-      int x = piece.getX();
-      if(x == 0) {
-         return PieceState.NONE;
-      } else {
-         piece.setX(x - 1);
-         return PieceState.MOVE;
-      }
    }
    
-   public PieceState moveRight() {
+   private PieceState moveLeftRight(int dx) {
+      PlayField field = model.getField();
       Piece piece = model.getPiece();
+      int y = piece.getY();
       int x = piece.getX();
-      int w = model.getField().getWidth() - 1;
-      if(x == w) {
+       int nextX = x + dx;
+      if(field.getSquare(nextX, y)) {
          return PieceState.NONE;
       } else {
-         piece.setX(x + 1);
+         piece.setX(nextX);
          return PieceState.MOVE;
       }
 
+   }
+   
+   public PieceState moveLeft() {
+      return moveLeftRight(-1);   
+   }
+   
+   public PieceState moveRight() {
+      return moveLeftRight(1);  
    }
    
    public PieceState moveDown() {
