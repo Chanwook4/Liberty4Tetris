@@ -1,13 +1,13 @@
 public class GameModel {
-   private final PlayField field;
+   private final Grid field;
    private Piece piece;
    
    public GameModel() {
-      this.field = new PlayField(10, 20);
+      this.field = new Grid(10, 20);
       this.piece = new Piece(5,0);
    }
    
-   public PlayField getField() {
+   public Grid getField() {
       return this.field;
    }
    

@@ -7,7 +7,7 @@ public class GameController {
    }
    
    private PieceState moveLeftRight(int dx) {
-      PlayField field = model.getField();
+      Grid field = model.getField();
       Piece piece = model.getPiece();
       int y = piece.getY();
       int x = piece.getX();
@@ -30,7 +30,7 @@ public class GameController {
    }
    
    public PieceState moveDown() {
-      PlayField field = model.getField();
+      Grid field = model.getField();
       Piece piece = model.getPiece();
       int y = piece.getY();
       int nextY = y + 1; 

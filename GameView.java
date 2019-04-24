@@ -74,7 +74,7 @@ public class GameView {
   }
   
    private void drawField() {
-      PlayField field = this.model.getField();
+      Grid field = this.model.getField();
       
       int width = field.getWidth();
       int height = field.getHeight();

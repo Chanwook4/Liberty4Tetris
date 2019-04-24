@@ -1,9 +1,9 @@
-public class PlayField {
+public class Grid {
    private final boolean [] grid; 
    private final int width;
    private final int height;
    
-   public PlayField(int width, int height) {
+   public Grid(int width, int height) {
       grid = new boolean [width * height];
       this.width = width;
       this.height = height;
