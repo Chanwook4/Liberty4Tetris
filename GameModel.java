@@ -18,4 +18,29 @@ public class GameModel {
    public void nextPiece() {
       this.piece = new Piece(5,0);
    }
+   
+   public void clearLines() {
+      for (int y = 0; y < field.getHeight(); y++) {
+         boolean lineCleared = true;
+         for (int x = 0; x < field.getWidth(); x++) {
+            if (field.getSquare(x, y) == false) {
+               lineCleared = false;
+            } 
+         }
+         if (lineCleared == true) {
+            for (int x = 0; x < field.getWidth(); x++) {
+               field.setSquare(x, y, false);
+            }
+            shiftRows(y);
+         }
+      }
+   }
+   private void shiftRows(int endRow) {
+      for(int y = endRow; y > 0; y--) {   
+         for (int x = 0; x < field.getWidth(); x++) {
+            boolean box = field.getSquare(x,y-1);
+            field.setSquare(x, y, box);
+         }
+      }
+   }
 }

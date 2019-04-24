@@ -38,6 +38,7 @@ public class GameController {
       if(field.getSquare(x, nextY) == true) {
          field.setSquare(x, y, true);
          model.nextPiece();
+         model.clearLines();
          return PieceState.DROP;
       } else {
          piece.setY(y + 1);
