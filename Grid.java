@@ -37,4 +37,18 @@ public class Grid {
    public int getHeight() {
       return height;
    }
+   
+   public boolean checkClear(Grid otherGrid, int x0, int y0) {
+      for (int y = 0; y < otherGrid.getHeight(); y++) {
+         for (int x = 0; x < otherGrid.getWidth(); x++) {
+            if (otherGrid.getSquare(x, y) == true) {
+               if (this.getSquare(x + x0, y + y0)) {
+                  return false;
+               }
+            }
+         }
+      }
+      return true; 
+         
+   }
 }

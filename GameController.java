@@ -11,8 +11,9 @@ public class GameController {
       Piece piece = model.getPiece();
       int y = piece.getY();
       int x = piece.getX();
-       int nextX = x + dx;
-      if(field.getSquare(nextX, y)) {
+      Grid grid = piece.getGrid();
+      int nextX = x + dx;
+      if (!field.checkClear(grid, nextX, y)) {
          return PieceState.NONE;
       } else {
          piece.setX(nextX);
@@ -35,17 +36,26 @@ public class GameController {
       int y = piece.getY();
       int nextY = y + 1; 
       int x = piece.getX();
-      if(field.getSquare(x, nextY) == true) {
-         field.setSquare(x, y, true);
-         model.nextPiece();
-         model.clearLines();
+      Grid grid = piece.getGrid();
+      if(!field.checkClear(grid, x, nextY)) {
+         dropPiece(field, grid, x, y);
          return PieceState.DROP;
       } else {
-         piece.setY(y + 1);
+         piece.setY(nextY);
          return PieceState.MOVE;
          
       }
 
+   }
+   
+   private void dropPiece(Grid field, Grid grid, int x0, int y0) {
+       for (int y = 0; y < grid.getHeight(); y++) {
+          for (int x = 0; x < grid.getWidth(); x++) {        
+            field.setSquare(x + x0, y + y0, true);
+          }
+       }
+       model.nextPiece();
+       model.clearLines();
    }
 
 }

@@ -94,11 +94,21 @@ public class GameView {
    
    private void drawPiece() {
       Piece piece = this.model.getPiece();
-      int x = piece.getX();
-      int y = piece.getY();
+      int x0 = piece.getX();
+      int y0 = piece.getY();
+      Grid grid = piece.getGrid();
       pieceLayer.clearRect(0, 0, XWINDOW, YWINDOW); 
       pieceLayer.setFill(Color.BLUE);
       pieceLayer.setStroke(Color.GREEN);
+      for (int y = 0; y < grid.getHeight(); y++) {
+         for (int x = 0; x < grid.getWidth(); x++) {
+            drawSquare(x + x0, y + y0);
+         }
+      } 
+         
+   }
+   
+   private void drawSquare(int x, int y) {
       pieceLayer.fillRect(x * SCALE, y * SCALE, SCALE, SCALE);
       pieceLayer.strokeRect(x * SCALE, y * SCALE, SCALE, SCALE);
    }

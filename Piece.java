@@ -4,7 +4,14 @@ public class Piece {
    
    private int y;
    
+   private final Grid grid;
+   
    public Piece(int x, int y) {
+      this.grid = new Grid (2,2);
+      grid.setSquare(0, 0, true);
+      grid.setSquare(1, 0, true);
+      grid.setSquare(0, 1, true);
+      grid.setSquare(1, 1, true);
       this.x = x;
       this.y = y;
       
@@ -24,6 +31,10 @@ public class Piece {
    
    public void setY(int y) {
       this.y = y;
+   }
+   
+   public Grid getGrid() {
+      return this.grid;
    }
 
 }
