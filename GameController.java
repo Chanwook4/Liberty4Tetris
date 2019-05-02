@@ -50,8 +50,10 @@ public class GameController {
    
    private void dropPiece(Grid field, Grid grid, int x0, int y0) {
        for (int y = 0; y < grid.getHeight(); y++) {
-          for (int x = 0; x < grid.getWidth(); x++) {        
-            field.setSquare(x + x0, y + y0, true);
+          for (int x = 0; x < grid.getWidth(); x++) {   
+            if (grid.getSquare(x, y)) {     
+               field.setSquare(x + x0, y + y0, true);
+            }
           }
        }
        model.nextPiece();

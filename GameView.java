@@ -102,7 +102,9 @@ public class GameView {
       pieceLayer.setStroke(Color.GREEN);
       for (int y = 0; y < grid.getHeight(); y++) {
          for (int x = 0; x < grid.getWidth(); x++) {
-            drawSquare(x + x0, y + y0);
+            if (grid.getSquare(x, y) == true) {
+               drawSquare(x + x0, y + y0);
+            }
          }
       } 
          
