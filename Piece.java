@@ -1,4 +1,4 @@
-public class Piece {
+public abstract class Piece {
 
    private int x0;
    
@@ -6,8 +6,7 @@ public class Piece {
    
    private final Grid grid;
    
-   public Piece(int x0, int y0) {
-      int hex = 0x0066;
+   protected Piece(int x0, int y0, int hex) {
       this.grid = new Grid (4,4);
       for (int y = 0; y < grid.getHeight(); y++) {
          for (int x = 0; x < grid.getWidth(); x++) {
@@ -16,6 +15,7 @@ public class Piece {
             grid.setSquare(x , y, square);
          }
       }
+    
       
 //       grid.setSquare(0, 0, true);
 //       grid.setSquare(1, 0, true);

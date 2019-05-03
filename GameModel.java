@@ -1,10 +1,12 @@
+import java.util.*;
+
 public class GameModel {
    private final Grid field;
    private Piece piece;
    
    public GameModel() {
       this.field = new Grid(10, 20);
-      this.piece = new Piece(5,0);
+      nextPiece();
    }
    
    public Grid getField() {
@@ -16,7 +18,12 @@ public class GameModel {
    }
    
    public void nextPiece() {
-      this.piece = new Piece(5,0);
+      int r = (int)(Math.random() * 2);
+      if (r == 0) {
+         piece = new LPiece(3,0);
+      } else {
+         piece = new OPiece(3,0);
+      }
    }
    
    public void clearLines() {

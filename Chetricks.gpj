@@ -12,7 +12,9 @@ s#i0
 s#k0
 s#j0
 s#l0
-!136;g
+!170;g
+%\011LPiece.java
+%\011OPiece.java
 %\011Grid.java
 %\011GameView.java
 %\011Chetricks.java
@@ -20,7 +22,9 @@ s#l0
 %\011GameModel.java
 %\011Piece.java
 %\011PieceState.java
-!136;f
+!170;f
+%\011LPiece.java
+%\011OPiece.java
 %\011Grid.java
 %\011GameView.java
 %\011Chetricks.java
