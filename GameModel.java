@@ -18,9 +18,11 @@ public class GameModel {
    }
    
    public void nextPiece() {
-      int r = (int)(Math.random() * 2);
+      int r = (int)(Math.random() * 3);
       if (r == 0) {
          piece = new LPiece(3,0);
+      } else if (r == 1) {
+         piece = new IPiece(3,0);
       } else {
          piece = new OPiece(3,0);
       }

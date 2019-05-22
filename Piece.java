@@ -6,24 +6,32 @@ public abstract class Piece {
    
    private final Grid grid;
    
-   protected Piece(int x0, int y0, int hex) {
+   private final int[] rotations;
+   
+   private int rotationIndex = 0;
+   
+   protected Piece(int x0, int y0, int hex0, int hex1, int hex2, int hex3) {
       this.grid = new Grid (4,4);
-      for (int y = 0; y < grid.getHeight(); y++) {
-         for (int x = 0; x < grid.getWidth(); x++) {
-            boolean square = (hex % 2 == 1);
-            hex = hex / 2;
-            grid.setSquare(x , y, square);
-         }
-      }
     
+      this.rotations = new int[] {hex0, hex1, hex2, hex3};
       
-//       grid.setSquare(0, 0, true);
-//       grid.setSquare(1, 0, true);
-//       grid.setSquare(0, 1, true);
-//       grid.setSquare(1, 1, true);
+      setBitmap();
+    
       this.x0 = x0;
       this.y0 = y0;
       
+   }
+   
+   private void setBitmap() {
+      int hex = this.rotations[rotationIndex];
+      for (int y = 0; y < grid.getHeight(); y++) {
+            for (int x = 0; x < grid.getWidth(); x++) {
+               boolean square = (hex % 2 == 1);
+               hex = hex / 2;
+               grid.setSquare(x , y, square);
+            }
+         }
+
    }
    
    public int getX() {
@@ -44,6 +52,11 @@ public abstract class Piece {
    
    public Grid getGrid() {
       return this.grid;
+   }
+   
+   public void rotate(int dr) {
+      rotationIndex = (rotationIndex + dr + 4) % 4;
+      setBitmap();
    }
 
 }

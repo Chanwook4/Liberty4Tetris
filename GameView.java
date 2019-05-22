@@ -68,6 +68,10 @@ public class GameView {
                return this.controller.moveRight();
             case DOWN:
                return this.controller.moveDown();
+            case Z:
+               return this.controller.rotateLeft();
+            case X:
+               return this.controller.rotateRight();
             default:
                 return PieceState.NONE;
             }

@@ -48,6 +48,32 @@ public class GameController {
 
    }
    
+   private PieceState rotateLeftRight(int dr) {
+      Grid field = model.getField();
+      Piece piece = model.getPiece();
+      piece.rotate(dr);
+      Grid grid = piece.getGrid();
+      int y = piece.getY();
+      int x = piece.getX();
+      if (!field.checkClear(grid, x, y)) {
+         piece.rotate(-dr);
+         return PieceState.NONE;
+      } else {
+         return PieceState.MOVE;
+      }
+
+   }
+   
+   public PieceState rotateLeft() {
+      return rotateLeftRight(-1);
+       
+   }
+   
+   public PieceState rotateRight() {
+      return rotateLeftRight(1);
+      
+   }
+   
    private void dropPiece(Grid field, Grid grid, int x0, int y0) {
        for (int y = 0; y < grid.getHeight(); y++) {
           for (int x = 0; x < grid.getWidth(); x++) {   
