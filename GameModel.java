@@ -17,15 +17,29 @@ public class GameModel {
       return this.piece;
    }
    
-   public void nextPiece() {
-      int r = (int)(Math.random() * 3);
-      if (r == 0) {
-         piece = new LPiece(3,0);
-      } else if (r == 1) {
-         piece = new IPiece(3,0);
-      } else {
-         piece = new OPiece(3,0);
+   private Piece randomPiece() {
+      int r = (int)(Math.random() * 7);
+      switch (r) {
+         case 0: return new LPiece(3, 0);
+         
+         case 1: return new JPiece(3, 0);
+         
+         case 2: return new IPiece(3, 0);
+         
+         case 3: return new OPiece(3, 0);
+         
+         case 4: return new SPiece(3, 0);
+         
+         case 5: return new ZPiece(3, 0);
+         
+         default: return new TPiece(3, 0);
+         
       }
+
+   }
+   
+   public void nextPiece() {
+      this.piece = randomPiece();
    }
    
    public void clearLines() {
