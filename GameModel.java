@@ -20,13 +20,13 @@ public class GameModel {
    private Piece randomPiece() {
       int r = (int)(Math.random() * 7);
       switch (r) {
-         case 0: return new LPiece(3, 0);
+         case 0: return new IPiece(3, 0);
          
-         case 1: return new JPiece(3, 0);
+         case 1: return new OPiece(3, 0);
          
-         case 2: return new IPiece(3, 0);
+         case 2: return new LPiece(3, 0);
          
-         case 3: return new OPiece(3, 0);
+         case 3: return new JPiece(3, 0);
          
          case 4: return new SPiece(3, 0);
          
@@ -59,10 +59,14 @@ public class GameModel {
       }
    }
    private void shiftRows(int endRow) {
-      for(int y = endRow; y > 0; y--) {   
+      for(int y = endRow; y >= 0; y--) {   
          for (int x = 0; x < field.getWidth(); x++) {
-            boolean box = field.getSquare(x,y-1);
-            field.setSquare(x, y, box);
+            if (y > 0) {
+               boolean box = field.getSquare(x,y-1);
+               field.setSquare(x, y, box);
+            } else {
+               field.setSquare(x, y, false);
+            }
          }
       }
    }

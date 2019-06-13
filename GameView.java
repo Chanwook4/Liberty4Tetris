@@ -5,6 +5,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.*;
 import javafx.stage.*;
+import java.util.*;
 
 
 public class GameView {
@@ -21,6 +22,8 @@ public class GameView {
    private final GraphicsContext pieceLayer;
    
    private final GameController controller;
+   
+   private final Timer gravityTimer;
    
    public GameView(Stage stage, GameModel model, GameController controller) {
       this.model = model;
@@ -42,10 +45,20 @@ public class GameView {
       
       drawField();
       drawPiece();
+      
+      this.gravityTimer = new Timer();
+      
+      GameTask gravity = new GameTask(() -> onKeyPressed(KeyCode.DOWN));
+      gravityTimer.schedule(gravity, 750, 750);
+
    }
    
    private void onKeyPressed(KeyEvent e) {
-        PieceState state = this.handleKeyPress(e.getCode());
+      onKeyPressed(e.getCode());
+   }
+    
+    private void onKeyPressed(KeyCode code) {
+      PieceState state = this.handleKeyPress(code);
         switch (state) {
             case MOVE:
                drawPiece();
@@ -57,6 +70,7 @@ public class GameView {
                drawField();
                break;
         }
+
     }
 
    private PieceState handleKeyPress(KeyCode code) {
